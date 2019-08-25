@@ -3,7 +3,6 @@ import firebase from "firebase";
 class FirebaseSDK {
   constructor() {
     if (!firebase.apps.length) {
-      //avoid re-initializing
       firebase.initializeApp({
         apiKey: "AIzaSyCKQgB2w2alniNWfOUniYMVwZVW-zK3ItI",
         authDomain: "armchat-22.firebaseapp.com",
@@ -114,6 +113,14 @@ class FirebaseSDK {
     return (firebase.auth().currentUser || {}).uid;
   }
 
+  get name() {
+    return (firebase.auth().currentUser || {}).displayName;
+  }
+
+  get email() {
+    return (firebase.auth().currentUser || {}).email;
+  }
+
   get ref() {
     return firebase.database().ref("messages");
   }
@@ -139,7 +146,7 @@ class FirebaseSDK {
   get timestamp() {
     return firebase.database.ServerValue.TIMESTAMP;
   }
-  // send the message to the Backend
+
   send = messages => {
     for (let i = 0; i < messages.length; i++) {
       const { text, user } = messages[i];
@@ -154,7 +161,6 @@ class FirebaseSDK {
 
   append = message => this.ref.push(message);
 
-  // close the connection to the Backend
   off() {
     this.ref.off();
   }

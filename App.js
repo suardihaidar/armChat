@@ -1,6 +1,6 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import Chat from "./src/views/HomeScreen"
+import Chat from "./src/views/ChatScreen"
 import Login from "./src/views/LoginScreen"
 import SignUp from "./src/views/SignUpScreen"
 
